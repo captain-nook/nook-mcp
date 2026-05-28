@@ -1,0 +1,21 @@
+﻿{
+  "name": "nook-image-mcp",
+  "description": "OpenAI-compatible image generation MCP bridge. Loads IMAGINE_URL and IMAGINE_KEY from local .env.",
+  "transport": "stdio",
+  "entrypoint": "server.py",
+  "install": {
+    "command": "python",
+    "args": ["install.py"]
+  },
+  "server": {
+    "command": "python",
+    "args": ["server.py"]
+  },
+  "env": {
+    "file": ".env",
+    "required": ["IMAGINE_URL", "IMAGINE_KEY"],
+    "example": ".env.example"
+  },
+  "tools": ["generate_image"]
+}
+
