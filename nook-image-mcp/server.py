@@ -35,6 +35,9 @@ if not IMAGINE_URL or not IMAGINE_KEY:
     )
     sys.exit(1)
 
+if not IMAGINE_URL.rstrip("/").endswith("/v1/images/generations"):
+    IMAGINE_URL = IMAGINE_URL.rstrip("/") + "/v1/images/generations"
+
 # ---------------------------------------------------------------------------
 # MCP Server
 # ---------------------------------------------------------------------------

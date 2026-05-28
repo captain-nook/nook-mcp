@@ -138,14 +138,41 @@ OpenCode 官方文档要求本地 MCP server 放在 `mcp` 字段中，`type` 为
 
 ## 环境变量
 
-在 `.env` 中配置：
+每个使用者都应该在自己的电脑上创建本地 `.env`，填写自己的中转地址和 key。不要共用发布者的 `.env`，也不要把 key 写进公开 MCP 配置。
+
+推荐方式一：复制 `.env.example`：
+
+```powershell
+Copy-Item .env.example .env
+notepad .env
+```
+
+然后填写：
 
 ```env
-IMAGINE_URL=https://your-relay.example.com/v1/images/generations
+IMAGINE_URL=https://your-relay.example.com
 IMAGINE_KEY=your-api-key-here
 ```
 
+`IMAGINE_URL` 可以写基础域名，也可以写完整的 `/v1/images/generations` endpoint。只写基础域名时，`server.py` 会自动补成 `/v1/images/generations`。
+
+推荐方式二：运行安装脚本：
+
+```powershell
+python install.py
+```
+
+脚本会提示填写 `IMAGINE_URL` 和 `IMAGINE_KEY`，并自动生成本地 `.env`。
+
 不要提交 `.env`。公开分享时只提交 `.env.example`。
+
+## 分发注意
+
+- 给别人用时，让对方运行 `python install.py` 或按上面的通用 MCP 配置接入。
+- 每个人都应该填写自己的 `IMAGINE_KEY`，不要复用发布者的私有 key。
+- 不要让别人复用你本机的 Codex / Claude / Cursor 配置文件。
+- 不要把 `IMAGINE_KEY` 写进公开 MCP 配置、README、截图或日志。
+- 仓库里的 `.env`、本机绝对路径和个人临时安装脚本不应随公开包一起分发。
 
 ## 工具接口
 
